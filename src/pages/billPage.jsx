@@ -1,9 +1,21 @@
-import React from 'react'
+import React from 'react';
+import Chart from '../components/Chart';
+import useFetchData from '../hook/useFetchData';
 
-const billPage = () => {
+const BillPage = () => {
+    const { data, loading } = useFetchData(`https://raw.githubusercontent.com/webs9919/music-best/main/billboard/billboard100_2024-06-04.json`);
+
     return (
-        <div>billPage</div>
-    )
+        <>
+            {loading ? (
+                <div>
+                    로딩중.....
+                </div>
+            ) : (
+                <Chart title="😙 감미로운 빌보드 챠트 Top100" musicList={data} />
+            )}
+        </>
+    );
 }
 
-export default billPage
+export default BillPage;
